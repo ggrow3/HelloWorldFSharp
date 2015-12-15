@@ -11,7 +11,7 @@ let hi = "Hello"
 
 let Square x = x * x
 
-let Area (length :float) height=
+let Areaa (length :float) height=
     length * height
 
 let Greeting name =
@@ -58,3 +58,34 @@ let RandomFruits count =
             yield fruits.[index]
     
     |]
+
+type Shape = 
+    | Square of float
+    | Rectangle of float * float
+    | Circle of float
+
+let s = Square 3.4
+let r = Rectangle(2.2, 1.9)
+let c = Circle(1.0)
+
+let drawing = [| s;r;c|]
+let Area(shape :Shape) = 
+    match shape with
+    | Square x -> x* x
+    | Rectangle(h,w) -> h * w
+    | Circle r -> System.Math.PI * r * r
+     
+let total = drawing |> Array.sumBy ( fun s -> Area s)
+let total2 = drawing |> Array.sumBy Area
+
+
+let one = [|50|]
+let two = [|60; 61|]
+let many = [|0..99|]
+
+let Describe arr = 
+    match arr with
+    | [|x|] -> sprintf "One element: %i" x
+    | [|x; y |] -> sprintf "Two elements: %i, %i" x y
+    | _ -> sprintf "A longer array"
+
